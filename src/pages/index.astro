@@ -1,16 +1,28 @@
 ---
-
+import BaseLayout from "@layouts/Base.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <main>
+    <h1>Hypermedia-Driven Applications</h1>
+    <h2>Index</h2>
+    <ul>
+      <li>
+        <a href="/slides/1">Start presentation</a>
+      </li>
+      <li>
+        <a href="/fibonacci">Fibonacci</a>
+      </li>
+    </ul>
+  </main>
+</BaseLayout>
+
+<style>
+  main {
+    background-color: white;
+    width: 987px;
+    height: 610px;
+    margin: auto;
+    margin-top: 0;
+  }
+</style>

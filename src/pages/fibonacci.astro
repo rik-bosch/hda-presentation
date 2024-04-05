@@ -1,0 +1,38 @@
+---
+import BaseLayout from '@layouts/Base.astro'
+
+function gen_fibo(): number[] {
+	const arr = [0,1]
+	for (let i = 1; i < 20; i++) {
+		arr.push(arr[i-1] + arr[i])
+	}
+	return arr
+}
+
+const fibo = gen_fibo()
+---
+
+<BaseLayout>
+	<main>
+    <h1>Fibonacci sequence</h1>
+		<table>
+			<tbody>
+				{fibo.map((n,i) => (
+					<tr>
+						<td>{n}</td>
+						<td>{i > 1 && n / fibo[i-1]}</td>
+					</tr>
+				))}
+			</tbody>
+		</table>
+	</main>
+</BaseLayout>
+
+<style>
+	main {
+		background-color: white;
+		width: 987px;
+		height: 610px;
+		margin: auto;
+	}
+</style>
