@@ -1,33 +1,20 @@
 ---
-import BaseLayout from "@layouts/Base.astro";
+import Slide from "@layouts/Slide.astro";
 ---
 
-<BaseLayout>
-  <main>
-    <div class="title">
-      <h1>Hypermedia-Driven Applications</h1>
-      <h2>Met Astro en HTMX</h2>
-    </div>
-    <div class="arrow-right">
-      <a href="/slides/2"><img src="/icons/arrow-right.svg" alt="next" /></a>
-    </div>
-  </main>
-</BaseLayout>
+<Slide>
+  <div class="title">
+    <h1>Hypermedia-Driven Applications</h1>
+    <h2>Met Astro en HTMX</h2>
+  </div>
+  <div class="arrow-right">
+    <a href="/slides/2"><img src="/icons/arrow-right.svg" alt="next" /></a>
+  </div>
+</Slide>
 
 <style is:global>
-  main {
-    background-image: url(/img/background1.jpg);
-    width: 987px;
-    height: 610px;
-    margin: auto;
-
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 21px;
-    color: #f8f8f8;
-  }
-
   div.title {
-    padding-top: 377px;
+    padding-bottom: 89px;
     padding-left: 144px;
   }
 
