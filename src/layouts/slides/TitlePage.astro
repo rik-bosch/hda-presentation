@@ -1,0 +1,31 @@
+---
+import Slide from "../Slide.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title }: Props = Astro.props;
+---
+
+<Slide next="/slides/2">
+  <div class="title-container">
+    <div class="title">
+      <h1>{title}</h1>
+      <slot />
+    </div>
+  </div>
+</Slide>
+
+<style>
+  .title-container {
+    display: grid;
+    align-items: end;
+    height: 100%;
+  }
+
+  .title {
+    padding-bottom: 89px;
+    padding-left: 144px;
+  }
+</style>

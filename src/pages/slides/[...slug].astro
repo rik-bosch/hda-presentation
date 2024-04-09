@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import TitlePage from "@layouts/slides/TitlePage.astro";
+import SingleColumnPage from "@layouts/slides/SingleColumnPage.astro";
+
+export async function getStaticPaths() {
+  const slides = await getCollection("slides");
+  return slides.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const Layout =
+  entry.data["page-type"] === "title-page" ? TitlePage : SingleColumnPage;
+---
+
+<Layout title={entry.data["title"]}><Content /></Layout>
