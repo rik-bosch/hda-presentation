@@ -2,13 +2,10 @@
 import Slide from "@layouts/Slide.astro";
 ---
 
-<Slide>
+<Slide next="/slides/2">
   <div class="title">
     <h1>Hypermedia-Driven Applications</h1>
     <h2>Met Astro en HTMX</h2>
-  </div>
-  <div class="arrow-right">
-    <a href="/slides/2"><img src="/icons/arrow-right.svg" alt="next" /></a>
   </div>
 </Slide>
 
@@ -24,11 +21,5 @@ import Slide from "@layouts/Slide.astro";
 
   h2 {
     font-size: 21px;
-  }
-
-  div.arrow-right {
-    position: absolute;
-    top: 288px;
-    right: 21px;
   }
 </style>

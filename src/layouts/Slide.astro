@@ -1,12 +1,49 @@
 ---
 import Base from "./Base.astro";
+
+interface Props {
+  prev?: string;
+  next?: string;
+}
+
+const { prev, next }: Props = Astro.props;
 ---
 
 <Base>
   <main><slot /></main>
+  {
+    next && (
+      <div class="arrow arrow-right">
+        <a href={next}>
+          <svg width="21" height="34">
+            <rect
+              class="arrow-part"
+              width="26.190037"
+              height="9.9771566"
+              x="2.1086307"
+              y="-4.9914856"
+              rx="4.9885783"
+              ry="4.9885783"
+              transform="matrix(0.69049166,0.72334035,-0.69049166,0.72334035,0,0)"
+            />
+            <rect
+              class="arrow-part"
+              width="26.190037"
+              height="9.9771566"
+              x="-21.429255"
+              y="-28.504751"
+              rx="4.9885783"
+              ry="4.9885783"
+              transform="matrix(0.69049166,-0.72334035,-0.69049166,-0.72334035,0,0)"
+            />
+          </svg>
+        </a>
+      </div>
+    )
+  }
 </Base>
 
-<style>
+<style is:global>
   html,
   body,
   main {
@@ -30,5 +67,26 @@ import Base from "./Base.astro";
 
     display: grid;
     align-items: end;
+  }
+</style>
+
+<style>
+  .arrow-right {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 1rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .arrow svg {
+    fill: #404040;
+    transition: fill 0.5s;
+  }
+
+  .arrow svg:hover {
+    fill: #f8f8f8;
   }
 </style>
