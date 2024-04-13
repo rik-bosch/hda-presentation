@@ -9,7 +9,7 @@ const { next }: Props = Astro.props;
 ---
 
 <Base>
-  <main><slot /></main>
+  <main transition:animate="slide"><slot /></main>
   {
     next && (
       <div class="arrow arrow-right">
