@@ -11,24 +11,26 @@ const { slideData }: Props = Astro.props;
 
 <Slide slideData={slideData}>
   <h1>{slideData.title}</h1>
-  <div class="content">
+  <div class="single-column-page">
     <slot />
   </div>
 </Slide>
 
-<style is:global>
+<style>
   h1 {
     margin: 0;
     padding-left: 144px;
     padding-top: 89px;
   }
+</style>
 
-  .content {
+<style is:global>
+  .single-column-page {
     margin-top: 89px;
     padding-left: 144px;
   }
 
-  .content li {
+  .single-column-page li {
     margin-top: 21px;
   }
 </style>
