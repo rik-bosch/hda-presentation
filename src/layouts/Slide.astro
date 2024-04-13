@@ -1,22 +1,50 @@
 ---
+import { SlideData } from "@models/slide-data";
 import Base from "./Base.astro";
 
 interface Props {
-  next?: string;
+  slideData: SlideData;
 }
 
-const { next }: Props = Astro.props;
+const { slideData }: Props = Astro.props;
 ---
 
 <Base>
   <main transition:animate="slide"><slot /></main>
   {
-    next && (
-      <div class="arrow arrow-right">
-        <a href={next}>
+    slideData.prev && (
+      <div class="arrow arrow-left">
+        <a href={slideData.prev}>
           <svg width="21" height="34">
             <rect
-              class="arrow-part"
+              width="26.190037"
+              height="9.9771566"
+              x="-13.085616"
+              y="10.202761"
+              rx="4.9885783"
+              ry="4.9885783"
+              transform="matrix(-0.69049166,0.72334035,0.69049166,0.72334035,0,0)"
+            />
+            <rect
+              width="26.190037"
+              height="9.9771566"
+              x="-36.623501"
+              y="-13.310505"
+              rx="4.9885783"
+              ry="4.9885783"
+              transform="matrix(-0.69049166,-0.72334035,0.69049166,-0.72334035,0,0)"
+            />
+          </svg>
+        </a>
+      </div>
+    )
+  }
+  {
+    slideData.next && (
+      <div class="arrow arrow-right">
+        <a href={slideData.next}>
+          <svg width="21" height="34">
+            <rect
               width="26.190037"
               height="9.9771566"
               x="2.1086307"
@@ -26,7 +54,6 @@ const { next }: Props = Astro.props;
               transform="matrix(0.69049166,0.72334035,-0.69049166,0.72334035,0,0)"
             />
             <rect
-              class="arrow-part"
               width="26.190037"
               height="9.9771566"
               x="-21.429255"
@@ -75,14 +102,21 @@ const { next }: Props = Astro.props;
 </style>
 
 <style>
-  .arrow-right {
+  .arrow {
     position: absolute;
     z-index: 1;
     top: 0;
-    right: 1rem;
     height: 100%;
     display: flex;
     align-items: center;
+  }
+
+  .arrow-right {
+    right: 1rem;
+  }
+
+  .arrow-left {
+    left: 1rem;
   }
 
   .arrow svg {

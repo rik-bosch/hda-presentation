@@ -18,9 +18,9 @@ interface Props {
 
 const { entry }: Props = Astro.props;
 const { Content } = await entry.render();
-const data = entry.data as SlideData;
+const slideData = entry.data as SlideData;
 const Layout =
-  data.pageType === PageTypes.titlePage ? TitlePage : SingleColumnPage;
+  slideData.pageType === PageTypes.titlePage ? TitlePage : SingleColumnPage;
 ---
 
-<Layout title={entry.data["title"]}><Content /></Layout>
+<Layout slideData={slideData}><Content /></Layout>

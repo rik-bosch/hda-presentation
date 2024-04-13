@@ -1,17 +1,18 @@
 ---
+import { SlideData } from "@models/slide-data";
 import Slide from "../Slide.astro";
 
 interface Props {
-  title: string;
+  slideData: SlideData;
 }
 
-const { title }: Props = Astro.props;
+const { slideData }: Props = Astro.props;
 ---
 
-<Slide next="/slides/2">
+<Slide slideData={slideData}>
   <div class="title-container">
     <div class="title">
-      <h1>{title}</h1>
+      <h1>{slideData.title}</h1>
       <slot />
     </div>
   </div>
