@@ -1,7 +1,8 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, CollectionEntry } from "astro:content";
 import TitlePage from "@layouts/slides/TitlePage.astro";
 import SingleColumnPage from "@layouts/slides/SingleColumnPage.astro";
+import { SlideData, PageTypes } from "@models/slide-data";
 
 export async function getStaticPaths() {
   const slides = await getCollection("slides");
@@ -11,10 +12,15 @@ export async function getStaticPaths() {
   }));
 }
 
-const { entry } = Astro.props;
+interface Props {
+  entry: CollectionEntry<"slides">;
+}
+
+const { entry }: Props = Astro.props;
 const { Content } = await entry.render();
+const data = entry.data as SlideData;
 const Layout =
-  entry.data["page-type"] === "title-page" ? TitlePage : SingleColumnPage;
+  data.pageType === PageTypes.titlePage ? TitlePage : SingleColumnPage;
 ---
 
 <Layout title={entry.data["title"]}><Content /></Layout>
