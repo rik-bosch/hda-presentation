@@ -3,7 +3,7 @@ interface Props {
   rows: string[];
 }
 
-const { rows } = Astro.props;
+const { rows }: Props = Astro.props;
 ---
 
 {rows.map((row) => <li set:html={row} />)}

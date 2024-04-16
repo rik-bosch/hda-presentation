@@ -20,7 +20,7 @@ import { ViewTransitions } from "astro:transitions";
     <slot />
     <script>
       document.addEventListener("astro:page-load", () => {
-        htmx.process(document.body);
+        globalThis.htmx.process(document.body);
       });
     </script>
   </body>
