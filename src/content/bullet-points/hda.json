@@ -1,0 +1,13 @@
+{
+  "slug": "hda",
+  "rows": [
+    "<del>JSON</del> <ins>HTML</ins> Rest API's",
+    "Hypermedia As The Engine Of State (HATEOS)",
+    "Declaratief, asynchroon en dynamisch",
+    "30+ jaar oude web standaarden centraal: HTTP, HTML, CSS",
+    "Moderniseer met nieuwere API's: Fetch, Web Components, View Transitions, etc",
+    "Tools versimpelen en/of bouwen op deze standaarden",
+    "Weinig boilerplate",
+    "BFF = SSR"
+  ]
+}

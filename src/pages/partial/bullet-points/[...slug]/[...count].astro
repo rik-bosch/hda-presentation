@@ -1,0 +1,35 @@
+---
+import { BulletPoints } from "@models/bullet-points";
+import { getEntry, getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  function range(n: number): number[] {
+    const arr = new Array(n);
+    return [...arr.keys()];
+  }
+
+  const entries = await getCollection("bullet-points");
+  return entries.flatMap((entry) => {
+    const data = entry.data as BulletPoints;
+    return range(data.rows.length)
+      .filter((count) => count > 0)
+      .map((count) => ({
+        params: {
+          slug: data.slug,
+          count: count,
+        },
+      }));
+  });
+}
+
+export const partial = true;
+
+const { slug, count } = Astro.params;
+const entry = await getEntry("bullet-points", slug);
+const data = entry.data as BulletPoints;
+const partialData = data.rows.slice(0, count);
+---
+
+<ul>
+  {partialData.map((row) => <li set:html={row} />)}
+</ul>

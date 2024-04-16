@@ -1,0 +1,11 @@
+{
+  "slug": "htmx",
+  "rows": [
+    "Boost anchors",
+    "HTTP Methods",
+    "Custom Targets",
+    "Custom Triggers",
+    "HTMX HTTP Headers",
+    "Custom Events"
+  ]
+}

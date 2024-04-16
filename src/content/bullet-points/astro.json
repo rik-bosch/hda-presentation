@@ -1,0 +1,12 @@
+{
+  "slug": "astro",
+  "rows": [
+    "Backend For Frontend",
+    "SSG vs SSR vs client-side rendering",
+    "Integrations",
+    "Astro Islands",
+    "Content Collections",
+    "View Transitions",
+    "Partials"
+  ]
+}
