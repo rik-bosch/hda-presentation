@@ -1,0 +1,9 @@
+---
+interface Props {
+  rows: string[];
+}
+
+const { rows } = Astro.props;
+---
+
+{rows.map((row) => <li set:html={row} />)}

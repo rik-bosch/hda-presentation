@@ -1,6 +1,7 @@
 ---
-import { BulletPoints } from "@models/bullet-points";
 import { getEntry, getCollection } from "astro:content";
+import { BulletPoints } from "@models/bullet-points";
+import BulletPointsComponent from "@components/BulletPoints.astro";
 
 export async function getStaticPaths() {
   function range(n: number): number[] {
@@ -11,7 +12,7 @@ export async function getStaticPaths() {
   const entries = await getCollection("bullet-points");
   return entries.flatMap((entry) => {
     const data = entry.data as BulletPoints;
-    return range(data.rows.length)
+    return range(data.rows.length + 1)
       .filter((count) => count > 0)
       .map((count) => ({
         params: {
@@ -25,11 +26,25 @@ export async function getStaticPaths() {
 export const partial = true;
 
 const { slug, count } = Astro.params;
+const countN = Number.parseInt(count);
 const entry = await getEntry("bullet-points", slug);
 const data = entry.data as BulletPoints;
-const partialData = data.rows.slice(0, count);
+const partialData = data.rows.slice(0, countN);
+const next: number | null = countN >= data.rows.length ? null : countN + 1;
 ---
 
-<ul>
-  {partialData.map((row) => <li set:html={row} />)}
-</ul>
+{
+  next === null ? (
+    <ul>
+      <BulletPointsComponent rows={data.rows} />
+    </ul>
+  ) : (
+    <ul
+      hx-get={`/partial/bullet-points/${slug}/${next}`}
+      hx-swap="outerHTML"
+      hx-trigger="click from:main"
+    >
+      <BulletPointsComponent rows={partialData} />
+    </ul>
+  )
+}
