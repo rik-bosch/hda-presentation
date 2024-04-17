@@ -1,6 +1,6 @@
 ---
 import { getEntry, getCollection } from "astro:content";
-import { BulletPoints } from "@models/bullet-points";
+import { type BulletPoints } from "@models/bullet-points";
 import BulletPointsComponent from "@components/BulletPoints.astro";
 
 export async function getStaticPaths() {
@@ -17,7 +17,7 @@ export async function getStaticPaths() {
       .map((count) => ({
         params: {
           slug: data.slug,
-          count: count,
+          count: `${count}`,
         },
       }));
   });
@@ -28,7 +28,7 @@ export const partial = true;
 const { slug, count } = Astro.params;
 const showCount = Number.parseInt(count);
 const entry = await getEntry("bullet-points", slug);
-const data = entry.data as BulletPoints;
+const data = (entry?.data as BulletPoints) || { slug: "error", rows: [] };
 const next: number | null =
   showCount >= data.rows.length ? null : showCount + 1;
 ---

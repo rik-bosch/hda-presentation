@@ -19,8 +19,11 @@ import { ViewTransitions } from "astro:transitions";
   <body>
     <slot />
     <script>
+      declare global {
+        var htmx: { process: (elem: HTMLElement) => void };
+      }
       document.addEventListener("astro:page-load", () => {
-        globalThis.htmx.process(document.body);
+        htmx.process(document.body);
       });
     </script>
   </body>

@@ -1,8 +1,8 @@
 ---
-import { getCollection, CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import TitlePage from "@layouts/slides/TitlePage.astro";
 import SingleColumnPage from "@layouts/slides/SingleColumnPage.astro";
-import { SlideData, PageType } from "@models/slide-data";
+import { type SlideData, PageType } from "@models/slide-data";
 import TwoColumnPage from "@layouts/slides/TwoColumnPage.astro";
 
 export async function getStaticPaths() {
