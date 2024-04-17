@@ -1,16 +1,17 @@
 import { z } from "astro:content";
 
-export enum PageTypes {
+export enum PageType {
   titlePage = "title-page",
   singleColumnPage = "single-column-page",
+  twoColumnPage = "two-column-page",
 }
 
-const PageTypeEnum = z.nativeEnum(PageTypes);
+const PageTypeEnum = z.nativeEnum(PageType);
 type PageTypeEnum = z.infer<typeof PageTypeEnum>;
 
 export interface SlideData {
   title: string;
-  pageType: PageTypes;
+  pageType: PageType;
   prev?: string;
   next?: string;
 }

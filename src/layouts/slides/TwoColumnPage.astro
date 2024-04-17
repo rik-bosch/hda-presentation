@@ -1,0 +1,65 @@
+---
+import { SlideData } from "@models/slide-data";
+import Slide from "../Slide.astro";
+
+interface Props {
+  slideData: SlideData;
+}
+
+const { slideData }: Props = Astro.props;
+---
+
+<Slide slideData={slideData}>
+  <h1>{slideData.title}</h1>
+  <div class="two-column-page">
+    <slot />
+  </div>
+</Slide>
+
+<style>
+  h1 {
+    margin: 0;
+    padding-left: 144px;
+    padding-top: 89px;
+  }
+</style>
+
+<style is:global>
+  .two-column-page {
+    margin-top: 89px;
+    padding-left: 144px;
+    padding-right: 144px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .two-column-page li {
+    margin-top: 21px;
+  }
+
+  .colored-block {
+    border-radius: 1rem;
+    padding: 2rem;
+  }
+
+  .colored-block.blue {
+    border: 1rem solid darkblue;
+    background-color: rgba(0, 0, 128, 0.6);
+  }
+
+  .colored-block.green {
+    border: 1rem solid darkgreen;
+    background-color: rgba(0, 128, 0, 0.6);
+  }
+
+  .colored-block.orange {
+    border: 1rem solid darkorange;
+    background-color: rgba(128, 128, 0, 0.6);
+  }
+
+  .colored-block.magenta {
+    border: 1rem solid darkmagenta;
+    background-color: rgba(128, 0, 128, 0.6);
+  }
+</style>
