@@ -26,17 +26,17 @@ export async function getStaticPaths() {
 export const partial = true;
 
 const { slug, count } = Astro.params;
-const countN = Number.parseInt(count);
+const showCount = Number.parseInt(count);
 const entry = await getEntry("bullet-points", slug);
 const data = entry.data as BulletPoints;
-const partialData = data.rows.slice(0, countN);
-const next: number | null = countN >= data.rows.length ? null : countN + 1;
+const next: number | null =
+  showCount >= data.rows.length ? null : showCount + 1;
 ---
 
 {
   next === null ? (
     <ul>
-      <BulletPointsComponent rows={data.rows} />
+      <BulletPointsComponent rows={data.rows} {showCount} />
     </ul>
   ) : (
     <ul
@@ -44,7 +44,7 @@ const next: number | null = countN >= data.rows.length ? null : countN + 1;
       hx-swap="outerHTML"
       hx-trigger="click from:main"
     >
-      <BulletPointsComponent rows={partialData} />
+      <BulletPointsComponent rows={data.rows} {showCount} />
     </ul>
   )
 }

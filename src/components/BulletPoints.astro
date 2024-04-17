@@ -1,9 +1,29 @@
 ---
 interface Props {
   rows: string[];
+  showCount: number;
 }
 
-const { rows }: Props = Astro.props;
+const { rows: visibleRows, showCount }: Props = Astro.props;
 ---
 
-{rows.map((row) => <li set:html={row} />)}
+{
+  visibleRows.map((row, i) => (
+    <li
+      id={`bullet-point-${i}`}
+      class:list={["bullet-point", { invisible: i >= showCount }]}
+      set:html={row}
+    />
+  ))
+}
+
+<style is:inline>
+  .bullet-point {
+    opacity: 1;
+    transition: opacity 1s;
+  }
+
+  .bullet-point.invisible {
+    opacity: 0;
+  }
+</style>
